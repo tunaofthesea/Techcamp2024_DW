@@ -7,13 +7,13 @@ using UnityEngine.Playables;
 public class GridPlacer : MonoBehaviour
 {
 #if UNITY_EDITOR
-    public Camera mainCamera; // Assign your main camera in the inspector.
-    public float gridSize = 1.0f; // Change this to match your grid size.
-    public LayerMask placeableLayer; // Assign this in the inspector to filter raycast hits.
+    public Camera mainCamera;
+    public float gridSize = 1.0f;
+    public LayerMask placeableLayer;
 
     public bool isPlacing = false;
     public Vector3 startPosition;
-    public IPlaceable currentPlaceable; // Reference to the current IPlaceable object being placed.
+    public IPlaceable currentPlaceable;
 
     public void Check()
     {
