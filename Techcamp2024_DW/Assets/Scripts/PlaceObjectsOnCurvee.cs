@@ -8,6 +8,7 @@ public class PlaceObjectsOnCurvee : MonoBehaviour
 
     void Start()
     {
+        radius = GetComponent<MeshRenderer>().bounds.size.x;
         PlaceObjects();
     }
 
@@ -17,7 +18,9 @@ public class PlaceObjectsOnCurvee : MonoBehaviour
         {
             float theta = (Mathf.PI / 2) * i / (numberOfObjects - 1);
             Vector3 position = new Vector3(Mathf.Cos(theta) * radius, 0, Mathf.Sin(theta) * radius);
-            Instantiate(objectToPlace, position, Quaternion.identity);
+            GameObject go = Instantiate(objectToPlace, Vector3.zero, Quaternion.identity);
+            //go.transform.set
+            go.transform.localScale = position;
         }
     }
 }

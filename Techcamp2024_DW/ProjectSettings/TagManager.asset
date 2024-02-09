@@ -14,7 +14,7 @@ TagManager:
   - Placable
   - Clickable
   - 
-  - 
+  - Canvas Objects
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Front
+    uniqueID: 2543393605
     locked: 0
