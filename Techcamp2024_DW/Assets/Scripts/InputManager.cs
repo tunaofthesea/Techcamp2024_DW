@@ -42,11 +42,10 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        // Use camera's forward direction for raycasting
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 
-        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
+        if (!Physics.Raycast(ray, out hit, 10, clickableLayer))
         {
             if (previousObject != null)
             {
@@ -74,15 +73,34 @@ public class InputManager : MonoBehaviour
             objectPanelAnim.Play("InteractionPanel_open");
 
             GameObject hitObject = hit.collider.gameObject;
-            MeshRenderer mr = hitObject.GetComponent<MeshRenderer>();
+            Vector3 anchorPosition = Vector3.Lerp(hitObject.transform.position, ray.origin, 0.5f);
 
-            objectCanvas.transform.position = hit.collider.gameObject.transform.position + new Vector3(0.5f, 0.5f, -0.5f);
+            float minDistance = 1f; // The minimum distance at which the scale will be at its smallest
+            float maxDistance = 10f; // The maximum distance at which the scale will be at its largest
 
-            // This could be the "shoot" or "interact" action, happening when the player presses the left mouse button
-            if (Input.GetMouseButtonDown(0))
+            // Your calculated distance
+            float distance = Vector3.Distance(hitObject.transform.position, ray.origin);
+
+            // Normalize the distance to a value between 0 and 1
+            float normalizedDistance = Mathf.Clamp((distance - minDistance) / (maxDistance - minDistance), 0f, 1f);
+
+            // Define your scale range
+            float minScale = 0.1f;
+            float maxScale = 0.5f;
+
+            // Lerp the scale based on the normalized distance
+            float scale = Mathf.Lerp(minScale, maxScale, normalizedDistance);
+
+            // Apply the scale to your canvas
+            objectCanvas.transform.localScale = new Vector3(scale, scale, scale);
+
+            objectCanvas.transform.position = anchorPosition + new Vector3(0.1f, 0.1f, 0);//hit.collider.gameObject.transform.position + new Vector3(0.5f, 0.5f, -0.5f);
+
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 triggeredObject.OnClick();
                 objectPanelAnim.Play("InteractionPanel_close");
+                ObjectHolder.instance.HoldObject(hitObject);
             }
         }
     }
