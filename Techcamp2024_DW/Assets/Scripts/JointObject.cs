@@ -5,6 +5,8 @@ using UnityEngine;
 public class JointObject : InteractionObject
 {
     public JointTag jointTag;
+    public bool jointSuccessful;
+
     protected override void Start()
     {
         base.Start();
