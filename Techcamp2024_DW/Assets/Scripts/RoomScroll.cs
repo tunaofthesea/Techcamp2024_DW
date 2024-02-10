@@ -13,43 +13,63 @@ public class RoomScroll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       /* foreach (var room in Room)
-        {
-            room.transform.Find("CCTV").gameObject.SetActive(false);
-        }*/
+        /* foreach (var room in Room)
+         {
+             room.transform.Find("CCTV").gameObject.SetActive(false);
+         }*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && roomIndex < Room.Length - 1)
+        if (Input.GetKeyDown(KeyCode.T) && roomIndex < Room.Length - 1)
         {
             roomChanged?.Invoke();
             roomIndex++;
             foreach (var room in Room)
-            {                
-                float conveyorPos = room.transform.position.x;
-                conveyorPos -= 20;
-                room.transform.position = new Vector3(conveyorPos, room.transform.position.y, room.transform.position.z);
+            {
+                StartCoroutine("StartLerpRight", room);
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && roomIndex > 0)
+        if (Input.GetKeyDown(KeyCode.R) && roomIndex > 0)
         {
             roomChanged?.Invoke();
             roomIndex--;
             foreach (var room in Room)
-            {     
-                float conveyorPos = room.transform.position.x;
-                conveyorPos += 20;
-                room.transform.position = new Vector3(conveyorPos, room.transform.position.y, room.transform.position.z);
+            {
+                StartCoroutine("StartLerpLeft", room);
             }
         }
     }
-    void DisableCams()
+    IEnumerator StartLerpRight(GameObject x)
     {
-        foreach (var room in Room) 
+        float conveyorPos = x.transform.position.x;
+        while (true)
         {
-            room.GetComponentInChildren<Camera>().enabled = false; 
+            Vector3 endPos = new Vector3(conveyorPos - 20, x.transform.position.y, x.transform.position.z);
+            x.transform.position = Vector3.Lerp(x.transform.position, endPos, 2f * Time.deltaTime);
+            if (Vector3.Distance(x.transform.position, endPos) <= 0.1f)
+            {
+                transform.position = endPos;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+    IEnumerator StartLerpLeft(GameObject x)
+    {
+        float conveyorPos = x.transform.position.x;
+        while (true)
+        {
+            Vector3 endPos = new Vector3(conveyorPos + 20, x.transform.position.y, x.transform.position.z);
+            x.transform.position = Vector3.Lerp(x.transform.position, endPos, 2f * Time.deltaTime);
+            if (Vector3.Distance(x.transform.position, endPos) <= 0.1f)
+            {
+                transform.position = endPos;
+                yield break;
+            }
+            yield return null;
         }
     }
 }
+ 
