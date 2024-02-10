@@ -23,6 +23,8 @@ public class ToggleMoveAndClampTarget : MonoBehaviour
     }
     void Start()
     {
+        if(objectToMove == null) { return; }
+
         initialPosition = objectToMove.transform.position + startPositionOffset;
     }
 
