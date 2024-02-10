@@ -10,20 +10,21 @@ public class RoomScroll : MonoBehaviour
     public delegate void RoomChanged();
     public RoomChanged roomChanged;
 
+    private bool teleported = true;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        /* foreach (var room in Room)
-         {
-             room.transform.Find("CCTV").gameObject.SetActive(false);
-         }*/
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T) && roomIndex < Room.Length - 1)
+        if (Input.GetKeyDown(KeyCode.T) && roomIndex < Room.Length - 1 && teleported)
         {
+            teleported = false;
             roomChanged?.Invoke();
             roomIndex++;
             foreach (var room in Room)
@@ -31,8 +32,9 @@ public class RoomScroll : MonoBehaviour
                 StartCoroutine("StartLerpRight", room);
             }
         }
-        if (Input.GetKeyDown(KeyCode.R) && roomIndex > 0)
+        if (Input.GetKeyDown(KeyCode.R) && roomIndex > 0 && teleported)
         {
+            teleported = false;
             roomChanged?.Invoke();
             roomIndex--;
             foreach (var room in Room)
@@ -51,6 +53,7 @@ public class RoomScroll : MonoBehaviour
             if (Vector3.Distance(x.transform.position, endPos) <= 0.1f)
             {
                 transform.position = endPos;
+                teleported = true;
                 yield break;
             }
             yield return null;
@@ -66,6 +69,7 @@ public class RoomScroll : MonoBehaviour
             if (Vector3.Distance(x.transform.position, endPos) <= 0.1f)
             {
                 transform.position = endPos;
+                teleported = true;
                 yield break;
             }
             yield return null;
