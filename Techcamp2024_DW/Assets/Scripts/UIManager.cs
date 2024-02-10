@@ -9,9 +9,6 @@ public class UIManager : MonoBehaviour
     public bool timeractive;
     public float countdown = 0f;
     public float countdownlimit = 0f;
-    private float rgbx = 0f;
-    private float rgby = 255f;
-    private float rgbz = 0f;
 
     public RoomScroll roomScroll;
     EarthquakeSimulatorManager earthquake;
@@ -37,18 +34,7 @@ public class UIManager : MonoBehaviour
             countdown -= Time.deltaTime;
             UpdateTimer();
             UpdateTextColor();
-            /*
-            if(countdown < 91f)
-            {
-                rgby -= Time.deltaTime;
-                timer.color = new Color(rgbx, rgby, rgbz);
-            }
-            else
-            {
-                rgbx += Time.deltaTime * 3;
-                timer.color = new Color(rgbx, rgby, rgbz);
-            }
-            */
+            
             if(countdown <= 0f)
             {
                 timeractive = false;
