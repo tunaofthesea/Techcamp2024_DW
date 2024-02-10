@@ -6,6 +6,7 @@ public class SimulationButton : InteractionObject
 {
     protected override void Start()
     {
+        
         base.Start();
     }
 
@@ -13,6 +14,7 @@ public class SimulationButton : InteractionObject
     public override void OnClick()
     {
         base.OnClick();
-        // Implement simulation start sequence here :)
+        UIManager uiManager = GameObject.Find("GameManager").GetComponent<UIManager>();
+        uiManager.StartTimer();
     }
 }
