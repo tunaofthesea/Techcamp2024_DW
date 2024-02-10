@@ -28,6 +28,11 @@ public class ToggleMoveAndClampTarget : MonoBehaviour
         initialPosition = objectToMove.transform.position + startPositionOffset;
     }
 
+    public void SetInitialPosition()
+    {
+        initialPosition = objectToMove.transform.position + startPositionOffset;
+    }
+
     void Update()
     {
         if (!_enabled)   { return; }

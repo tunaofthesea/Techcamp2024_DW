@@ -92,7 +92,9 @@ public class Inventory : MonoBehaviour
         }
 
         GameObject go = Instantiate(objectToInstantiate, jointObject.transform.position, Quaternion.identity);
-        //go.transform.rotation = jointObject.transform.rotation;
+        go.transform.rotation = jointObject.gameObject.transform.localRotation;
+        go.transform.SetParent(jointObject.transform.parent);
+        go.GetComponent<Animator>().enabled = true;
 
         jointObject.gameObject.SetActive(false);
     }

@@ -24,6 +24,8 @@ public class Bed : InteractionObject
     public override void OnClick()
     {
         base.OnClick();
+        objectMover.objectToMove = transform.parent.gameObject;
+        objectMover.SetInitialPosition();
         modulus++;
         if(modulus%2 == 0)
         {
@@ -51,11 +53,11 @@ public class Bed : InteractionObject
         while (elapsedTime < lerpTime)
         {
             elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(_startPos, targetPos, elapsedTime / lerpTime);
+            transform.parent.position = Vector3.Lerp(_startPos, targetPos, elapsedTime / lerpTime);
             yield return null;
         }
 
-        transform.position = targetPos;
+        transform.parent.position = targetPos;
     }
 
     IEnumerator MoveDown()
@@ -68,7 +70,7 @@ public class Bed : InteractionObject
         while (elapsedTime < lerpTime)
         {
             elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(_startPos, targetPos, elapsedTime / lerpTime);
+            transform.parent.position = Vector3.Lerp(_startPos, targetPos, elapsedTime / lerpTime);
             yield return null;
         }
 
