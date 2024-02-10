@@ -96,6 +96,7 @@ public class Inventory : MonoBehaviour
         go.transform.SetParent(jointObject.transform.parent);
         go.GetComponent<Animator>().enabled = true;
 
+        jointObject.jointSuccessful = true;
         jointObject.gameObject.SetActive(false);
     }
 
