@@ -24,7 +24,7 @@ public class EarthquakeSimulatorManager : MonoBehaviour
             originalPosition = floorTransform.position;
             originalRotation = floorTransform.rotation;
         }
-        StartCoroutine("Intensify");
+        //StartCoroutine("Intensify");
     }
 
     void Update()
@@ -37,8 +37,8 @@ public class EarthquakeSimulatorManager : MonoBehaviour
             float z = Mathf.PerlinNoise(elapsedTime * frequency, elapsedTime * frequency) * 2.0f - 1.0f;
 
 
-            Vector3 newPosition = originalPosition + new Vector3(x, y, z) * magnitude;
-            floorTransform.rotation *= Quaternion.Euler(newPosition);
+            Vector3 newPosition = originalPosition + new Vector3(x, y / 1.5f, z) * magnitude;
+            //floorTransform.rotation *= Quaternion.Euler(newPosition);
             floorTransform.position = newPosition;
         }
         
@@ -52,10 +52,10 @@ public class EarthquakeSimulatorManager : MonoBehaviour
                 case float n when (n < 1):
                     magnitude += 0.1f;
                     break;
-                case float n when (n >= 1 && n < 2):
+                case float n when (n >= 1 && n < 1.25f):
                     magnitude += 0.025f;
                     break;
-                case float n when (n > 2):
+                case float n when (n > 1.25f):
                     magnitude -= 0.2f;
                     if (!easeCalled) 
                     {
@@ -86,6 +86,8 @@ public class EarthquakeSimulatorManager : MonoBehaviour
                     case <= 0:
                         magnitude = 0;
                         StopCoroutine("EaseOut");
+                        transform.position = originalPosition;
+                        this.enabled = false;
                         break;
                 }
             }

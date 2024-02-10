@@ -13,7 +13,6 @@ public class InteractionObject : MonoBehaviour, IClickable
 
     public void OnPointer()
     {
-        Debug.Log(name);
         outline.enabled = true;
     }
 

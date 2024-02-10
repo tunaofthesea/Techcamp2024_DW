@@ -10,10 +10,21 @@ public class UIManager : MonoBehaviour
     public float countdown = 0f;
     public float countdownlimit = 0f;
 
+    public RoomScroll roomScroll;
+    EarthquakeSimulatorManager earthquake;
+
+    GameObject floor;
+
+    private void Start()
+    {
+        //roomScroll.roomChanged += GetQuakeFloor;
+        //floor = (GameObject)roomScroll.Room.GetValue(roomScroll.roomIndex);
+    }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G))
+       
+        if (Input.GetKeyDown(KeyCode.G))
         {
             StartTimer();
         }
@@ -29,8 +40,18 @@ public class UIManager : MonoBehaviour
                 timeractive = false;
                 countdown = 0f;
                 timer.text = "00:00";
+
+                floor = (GameObject)roomScroll.Room.GetValue(roomScroll.roomIndex);
+                floor.gameObject.GetComponentInChildren<EarthquakeSimulatorManager>().enabled = true;
+                floor.gameObject.GetComponentInChildren<EarthquakeSimulatorManager>().StartCoroutine("Intensify");
             }
         }
+    }
+    public void GetQuakeFloor()
+    {
+        if (floor != null)
+            floor.gameObject.GetComponentInChildren<EarthquakeSimulatorManager>().enabled = false;
+        floor = (GameObject)roomScroll.Room.GetValue(roomScroll.roomIndex);
     }
 
     public void StartTimer()

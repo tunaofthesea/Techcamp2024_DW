@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CamSwap : MonoBehaviour
 {
-    private RoomScroll roomScroll;
+    RoomScroll roomScroll;
     GameObject activeRoom;
 
     private bool peeping;
@@ -21,6 +21,7 @@ public class CamSwap : MonoBehaviour
         {
             peeping = true;
             //UpdateCam();
+            roomScroll = gameObject.GetComponent<RoomScroll>();
             activeRoom = (GameObject)roomScroll.Room.GetValue(roomScroll.roomIndex);
             activeRoom.transform.GetComponentInChildren<Camera>().enabled = true;
         }
@@ -33,6 +34,7 @@ public class CamSwap : MonoBehaviour
     public void UpdateCam()
     {
         Debug.Log("CHANGED!");
+        roomScroll = gameObject.GetComponent<RoomScroll>();
         if (activeRoom != null)
         {
             activeRoom.transform.GetComponentInChildren<Camera>().enabled = false;

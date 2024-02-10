@@ -19,7 +19,15 @@ public class CallBreakFromFloor : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<Break>() != null) 
         {
-            collision.gameObject.SendMessage("BreakObject");
+            Debug.Log(collision.relativeVelocity.magnitude);
+            if (collision.relativeVelocity.magnitude > 2.4f)
+            {
+                collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                collision.gameObject.SendMessage("BreakObject"); //Nested condition idea: When passes 80 degrees of rotation on either x or z
+                                                                 //and collides with floor, break.
+                //StartCoroutine("EnableCollision");
+                //collision.gameObject.GetComponent<Rigidbody>().AddExplosionForce(3f, collision.transform.position, 2f, 3f, ForceMode.Impulse);
+            }
         }
     }
 }
