@@ -19,7 +19,7 @@ public class CallBreakFromFloor : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<Break>() != null) 
         {
-            Debug.Log(collision.relativeVelocity.magnitude > 3f);
+            Debug.Log(collision.relativeVelocity.magnitude);
             if (collision.relativeVelocity.magnitude > 2.4f)
             {
                 collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -29,13 +29,5 @@ public class CallBreakFromFloor : MonoBehaviour
                 //collision.gameObject.GetComponent<Rigidbody>().AddExplosionForce(3f, collision.transform.position, 2f, 3f, ForceMode.Impulse);
             }
         }
-    }
-    private IEnumerator EnableCollision()
-    {
-        //yield return new WaitForSeconds(0.01f);
-        //Physics.IgnoreLayerCollision(3,3, false);
-        //yield return new WaitForSeconds(0.075f);
-        //Physics.IgnoreLayerCollision(3, 3, true);
-        yield return null;
     }
 }
