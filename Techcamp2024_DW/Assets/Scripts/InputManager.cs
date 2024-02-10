@@ -42,11 +42,10 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        // Use camera's forward direction for raycasting
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 
-        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
+        if (!Physics.Raycast(ray, out hit, 10, clickableLayer))
         {
             if (previousObject != null)
             {
@@ -59,6 +58,7 @@ public class InputManager : MonoBehaviour
         }
 
         IClickable triggeredObject = hit.collider.gameObject.GetComponent<IClickable>();
+        IHoldable holdable = hit.collider.gameObject.GetComponent<IHoldable>();
 
         if (previousObject != null && previousObject != triggeredObject)
         {
@@ -74,15 +74,33 @@ public class InputManager : MonoBehaviour
             objectPanelAnim.Play("InteractionPanel_open");
 
             GameObject hitObject = hit.collider.gameObject;
-            MeshRenderer mr = hitObject.GetComponent<MeshRenderer>();
+            Vector3 anchorPosition = Vector3.Lerp(hitObject.transform.position, ray.origin, 0.5f);
 
-            objectCanvas.transform.position = hit.collider.gameObject.transform.position + new Vector3(0.5f, 0.5f, -0.5f);
+            float minDistance = 1f;
+            float maxDistance = 10f;
 
-            // This could be the "shoot" or "interact" action, happening when the player presses the left mouse button
-            if (Input.GetMouseButtonDown(0))
+            float distance = Vector3.Distance(hitObject.transform.position, ray.origin);
+
+            float normalizedDistance = Mathf.Clamp((distance - minDistance) / (maxDistance - minDistance), 0f, 1f);
+
+            float minScale = 0.1f;
+            float maxScale = 0.5f;
+
+            float scale = Mathf.Lerp(minScale, maxScale, normalizedDistance);
+
+            objectCanvas.transform.localScale = new Vector3(scale, scale, scale);
+
+            objectCanvas.transform.position = anchorPosition + new Vector3(0.1f, 0.1f, 0);//hit.collider.gameObject.transform.position + new Vector3(0.5f, 0.5f, -0.5f);
+
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 triggeredObject.OnClick();
                 objectPanelAnim.Play("InteractionPanel_close");
+
+                if (holdable != null)
+                {
+                    ObjectHolder.instance.HoldObject(hitObject);
+                }
             }
         }
     }

@@ -6,7 +6,7 @@ public class InteractionObject : MonoBehaviour, IClickable
 {
     private Outline outline;
     public Canvas objectCanvas;
-    void Start()
+    protected virtual void Start()
     {
         outline = GetComponent<Outline>();
     }
@@ -22,7 +22,7 @@ public class InteractionObject : MonoBehaviour, IClickable
         outline.enabled = false;
     }
 
-    public void OnClick()
+    public virtual void OnClick()
     {
 
     }

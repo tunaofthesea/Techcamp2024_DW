@@ -18,3 +18,8 @@ public interface IClickable
     public void OffPointer();
     public void OnClick();
 }
+
+public interface IHoldable
+{
+    void OnHold();
+}
