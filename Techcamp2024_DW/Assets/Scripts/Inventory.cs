@@ -1,13 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     public List<GameObject> slots = new List<GameObject>();
+    public GameObject platePrefab;
+    public GameObject clipPrefab;
+    public GameObject filmPrefab;
+
     private int currentSlotIndex = 0;
 
     private GameObject previousSlot;
+    private GameObject currentSlot;
+    private GameObject objectToInstantiate;
+
+    public static Inventory instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -45,7 +59,38 @@ public class Inventory : MonoBehaviour
         }
 
         slots[currentSlotIndex].transform.localScale = Vector3.one * 1.35f;
+        currentSlot = slots[currentSlotIndex];
         previousSlot = slots[currentSlotIndex];
-
     }
+
+    public void CheckCurrentSlot(JointObject jointObject)
+    {
+        if(jointObject.jointTag.ToString() != currentSlot.tag)
+        {
+            //Play wrong placement animation
+            return;
+        }
+
+        switch(jointObject.jointTag)
+        {
+            case JointTag.Plate:
+                objectToInstantiate = platePrefab;
+                break;
+
+            case JointTag.Clip:
+                objectToInstantiate = clipPrefab;
+                break;
+
+            case JointTag.GlassFilm:
+                objectToInstantiate = filmPrefab;
+                break;
+        }
+
+        GameObject go = Instantiate(objectToInstantiate, jointObject.transform.position, Quaternion.identity);
+        //go.transform.rotation = jointObject.transform.rotation;
+
+        jointObject.gameObject.SetActive(false);
+    }
+
 }
+

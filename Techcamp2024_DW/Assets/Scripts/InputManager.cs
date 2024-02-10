@@ -58,6 +58,7 @@ public class InputManager : MonoBehaviour
         }
 
         IClickable triggeredObject = hit.collider.gameObject.GetComponent<IClickable>();
+        IHoldable holdable = hit.collider.gameObject.GetComponent<IHoldable>();
 
         if (previousObject != null && previousObject != triggeredObject)
         {
@@ -75,23 +76,18 @@ public class InputManager : MonoBehaviour
             GameObject hitObject = hit.collider.gameObject;
             Vector3 anchorPosition = Vector3.Lerp(hitObject.transform.position, ray.origin, 0.5f);
 
-            float minDistance = 1f; // The minimum distance at which the scale will be at its smallest
-            float maxDistance = 10f; // The maximum distance at which the scale will be at its largest
+            float minDistance = 1f;
+            float maxDistance = 10f;
 
-            // Your calculated distance
             float distance = Vector3.Distance(hitObject.transform.position, ray.origin);
 
-            // Normalize the distance to a value between 0 and 1
             float normalizedDistance = Mathf.Clamp((distance - minDistance) / (maxDistance - minDistance), 0f, 1f);
 
-            // Define your scale range
             float minScale = 0.1f;
             float maxScale = 0.5f;
 
-            // Lerp the scale based on the normalized distance
             float scale = Mathf.Lerp(minScale, maxScale, normalizedDistance);
 
-            // Apply the scale to your canvas
             objectCanvas.transform.localScale = new Vector3(scale, scale, scale);
 
             objectCanvas.transform.position = anchorPosition + new Vector3(0.1f, 0.1f, 0);//hit.collider.gameObject.transform.position + new Vector3(0.5f, 0.5f, -0.5f);
@@ -100,7 +96,11 @@ public class InputManager : MonoBehaviour
             {
                 triggeredObject.OnClick();
                 objectPanelAnim.Play("InteractionPanel_close");
-                ObjectHolder.instance.HoldObject(hitObject);
+
+                if (holdable != null)
+                {
+                    ObjectHolder.instance.HoldObject(hitObject);
+                }
             }
         }
     }

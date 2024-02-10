@@ -24,20 +24,24 @@ public class ObjectHolder : MonoBehaviour
             if(holdObject == go)
             {
                 holdObject.transform.SetParent(null);
+                holdObject.GetComponent<Rigidbody>().useGravity = true;
                 holdObject = null;
                 return;
             }
 
             holdObject.transform.SetParent(null);
+            holdObject.GetComponent<Rigidbody>().useGravity = true;
             holdObject.transform.position = go.transform.position;
 
             holdObject = go;
+            holdObject.GetComponent<Rigidbody>().useGravity = false;
             holdObject.transform.position = transform.position + transform.forward * 0.5f;
             holdObject.transform.SetParent(transform);
             return;
         }
 
         holdObject = go;
+        holdObject.GetComponent<Rigidbody>().useGravity = false;
         holdObject.transform.position = transform.position + transform.forward * 0.5f;
         holdObject.transform.SetParent(transform);
     }
