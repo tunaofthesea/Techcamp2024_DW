@@ -14,7 +14,15 @@ public class ObjectHolder : MonoBehaviour
 
     public GameObject CheckObject()
     {
-        return holdObject;
+        if(holdObject == null)
+        {
+            return null;
+        }
+        GameObject go = holdObject;
+        holdObject = null;
+        go.transform.SetParent(null);
+
+        return go;
     }
 
     public void HoldObject(GameObject go)

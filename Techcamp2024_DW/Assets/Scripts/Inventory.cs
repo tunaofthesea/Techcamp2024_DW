@@ -65,6 +65,11 @@ public class Inventory : MonoBehaviour
 
     public void CheckCurrentSlot(JointObject jointObject)
     {
+        if(currentSlot == null)
+        {
+            return;
+        }
+
         if(jointObject.jointTag.ToString() != currentSlot.tag)
         {
             //Play wrong placement animation
