@@ -53,11 +53,13 @@ public class ToggleMoveAndClampTarget : MonoBehaviour
 
     public void EnableMovement()
     {
+        AudioManager.Instance.PlaySFX("Pick Up");
         _enabled = true;
     }
 
     public void DisableMovement()
     {
+        AudioManager.Instance.PlaySFX("Let Go");
         _enabled = false;
     }
 

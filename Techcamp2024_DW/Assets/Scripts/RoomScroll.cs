@@ -22,7 +22,7 @@ public class RoomScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T) && roomIndex < Room.Length - 1 && teleported)
+        if (Input.GetKeyDown(KeyCode.R) && roomIndex < Room.Length - 1 && teleported)
         {
             teleported = false;
             roomChanged?.Invoke();
@@ -32,7 +32,7 @@ public class RoomScroll : MonoBehaviour
                 StartCoroutine("StartLerpRight", room);
             }
         }
-        if (Input.GetKeyDown(KeyCode.R) && roomIndex > 0 && teleported)
+        if (Input.GetKeyDown(KeyCode.T) && roomIndex > 0 && teleported)
         {
             teleported = false;
             roomChanged?.Invoke();

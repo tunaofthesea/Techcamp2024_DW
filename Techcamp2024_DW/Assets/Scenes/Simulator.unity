@@ -14457,6 +14457,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7d1a7e77d307c274a8e4035e08f90885, type: 3}
   - soundName: Break
     clip: {fileID: 8300000, guid: 813bfbe6cc6faa54a96e918f5ac44e87, type: 3}
+  - soundName: Pick Up
+    clip: {fileID: 8300000, guid: d16270a751f1fbc41b85ff5fe75350a7, type: 3}
+  - soundName: Let Go
+    clip: {fileID: 8300000, guid: 1185e8e7ea7dd7a4192debff5fc890a1, type: 3}
+  - soundName: Drill
+    clip: {fileID: 8300000, guid: 931688c8122c556489d49836a39eeaaf, type: 3}
+  - soundName: Sheet
+    clip: {fileID: 8300000, guid: 8b270ecb8d7ff1245987c8c3e158b690, type: 3}
   musicSource: {fileID: 505510217}
   sfxSource: {fileID: 823881391}
 --- !u!4 &1414649276

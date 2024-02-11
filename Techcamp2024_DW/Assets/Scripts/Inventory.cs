@@ -80,18 +80,22 @@ public class Inventory : MonoBehaviour
         {
             case JointTag.Plate:
                 objectToInstantiate = platePrefab;
+                AudioManager.Instance.PlaySFX("Drill");
                 break;
 
             case JointTag.Clip:
                 objectToInstantiate = clipPrefab;
+                AudioManager.Instance.PlaySFX("Drill");
                 break;
 
             case JointTag.GlassFilm:
                 objectToInstantiate = filmPrefab;
+                AudioManager.Instance.PlaySFX("Sheet");
                 break;
         }
 
         GameObject go = Instantiate(objectToInstantiate, jointObject.transform.position, Quaternion.identity);
+
         go.transform.rotation = jointObject.gameObject.transform.localRotation;
         go.transform.SetParent(jointObject.transform.parent);
         go.GetComponent<Animator>().enabled = true;

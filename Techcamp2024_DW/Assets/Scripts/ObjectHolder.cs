@@ -47,7 +47,7 @@ public class ObjectHolder : MonoBehaviour
             holdObject.transform.SetParent(transform);
             return;
         }
-
+        
         holdObject = go;
         holdObject.GetComponent<Rigidbody>().useGravity = false;
         holdObject.transform.position = transform.position + transform.forward * 0.5f;
