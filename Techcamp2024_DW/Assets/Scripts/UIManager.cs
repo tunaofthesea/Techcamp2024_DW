@@ -13,12 +13,13 @@ public class UIManager : MonoBehaviour
     public RoomScroll roomScroll;
     EarthquakeSimulatorManager earthquake;
 
+    public AudioManager audioManager;
+
     GameObject floor;
 
-    private void Start()
+    void Start()
     {
-        //roomScroll.roomChanged += GetQuakeFloor;
-        //floor = (GameObject)roomScroll.Room.GetValue(roomScroll.roomIndex);
+       // audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
     // Update is called once per frame
     void Update()
@@ -56,6 +57,7 @@ public class UIManager : MonoBehaviour
 
     public void StartTimer()
     {
+        audioManager.PlayMusic("Buildup Music");
         timeractive = true;
         countdown = countdownlimit;
     }

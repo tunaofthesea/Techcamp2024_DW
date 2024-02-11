@@ -17,6 +17,7 @@ public class Break : MonoBehaviour
         {
             return;
         }
+        AudioManager.Instance.PlaySFX("Break");
         isBroken = true;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         //GetComponent<BoxCollider>().enabled = false;
