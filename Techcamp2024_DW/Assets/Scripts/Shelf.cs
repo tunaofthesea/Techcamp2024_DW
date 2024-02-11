@@ -22,12 +22,22 @@ public class Shelf : InteractionObject
             // Check if the hit object has an IHoldable component
             IHoldable holdable = hit.collider.GetComponent<IHoldable>();
             hasObject = holdable != null; // Set hasObject based on the presence of an IHoldable
+
+            if(hit.collider.gameObject.GetComponent<BowlingBall>() != null)
+            {
+                if (hit.collider.gameObject.GetComponent<BowlingBall>().canHarm)
+                {
+                    distance = 0;
+                    StartCoroutine(DestroyShelf());
+                }
+            }
         }
         else
         {
             // If the raycast didn't hit anything, set hasObject to false
             hasObject = false;
         }
+
     }
 
     public override void OnClick()
@@ -49,5 +59,15 @@ public class Shelf : InteractionObject
         Gizmos.color = Color.red; // Set the color of the gizmo line
         Vector3 direction = transform.up * distance; // Calculate the direction and distance of the ray
         Gizmos.DrawRay(transform.position, direction); // Draw the ray from the object's position upward
+    }
+
+    IEnumerator DestroyShelf()
+    {
+        float randTime = Random.Range(2, 5);
+        yield return new WaitForSeconds(randTime);
+        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().isKinematic = false;
+
+
     }
 }

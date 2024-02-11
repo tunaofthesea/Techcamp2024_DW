@@ -9,6 +9,7 @@ public class EarthquakeSimulatorManager : MonoBehaviour
     public float magnitude = 0.0f;
     public float entryTime = 3f;
     public float quakeDuration = 10f;
+    public float maximumMagnitude = 1.25f;
 
     public bool isEasingOut;
     private bool easeCalled;
@@ -53,10 +54,10 @@ public class EarthquakeSimulatorManager : MonoBehaviour
                 case float n when (n < 1):
                     magnitude += 0.1f;
                     break;
-                case float n when (n >= 1 && n < 1.25f):
+                case float n when (n >= 1 && n < maximumMagnitude):
                     magnitude += 0.025f;
                     break;
-                case float n when (n > 1.25f):
+                case float n when (n > maximumMagnitude):
                     magnitude -= 0.2f;
                     if (!easeCalled) 
                     {
