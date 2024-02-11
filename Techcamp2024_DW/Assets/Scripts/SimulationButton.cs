@@ -16,6 +16,5 @@ public class SimulationButton : InteractionObject
         base.OnClick();
         UIManager uiManager = GameObject.Find("GameManager").GetComponent<UIManager>();
         uiManager.StartTimer();
-        SimulationStartManager.instance.CheckObjects();
     }
 }

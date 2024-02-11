@@ -23,7 +23,10 @@ public class SimulationStartManager : MonoBehaviour
                 ObjectsWithJoints[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 ObjectsWithJoints[i].GetComponent<Rigidbody>().useGravity = true;
                 ObjectsWithJoints[i].GetComponent<Rigidbody>().isKinematic = false;
-                ObjectsWithJoints[i].GetComponent<Break>().safe = false;
+                if (ObjectsWithJoints[i].GetComponent<Break>() != null)
+                {
+                    ObjectsWithJoints[i].GetComponent<Break>().safe = false;
+                }
             }
 
             else

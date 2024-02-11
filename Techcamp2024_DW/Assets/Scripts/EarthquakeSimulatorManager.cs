@@ -47,6 +47,7 @@ public class EarthquakeSimulatorManager : MonoBehaviour
     private IEnumerator Intensify() 
     {
         AudioManager.Instance.PlaySFX("Earthquake");
+        SimulationStartManager.instance.CheckObjects();
         while (true) 
         {
             switch (magnitude) 
@@ -91,6 +92,7 @@ public class EarthquakeSimulatorManager : MonoBehaviour
                         transform.position = originalPosition;
                         AudioManager.Instance.sfxSource.Stop();
                         this.enabled = false;
+
                         break;
                 }
             }
