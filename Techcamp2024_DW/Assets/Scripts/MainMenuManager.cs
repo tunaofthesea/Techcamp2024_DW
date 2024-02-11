@@ -13,7 +13,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        //room.transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+        room.transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
     }
 
     public void StartGame()
