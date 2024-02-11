@@ -16,6 +16,7 @@ public class Break : MonoBehaviour
         {
             return;
         }
+        AudioManager.Instance.PlaySFX("Break");
         isBroken = true;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         for (int i = 0; i < transform.childCount; i++)
