@@ -23,10 +23,13 @@ public class Shelf : InteractionObject
             IHoldable holdable = hit.collider.GetComponent<IHoldable>();
             hasObject = holdable != null; // Set hasObject based on the presence of an IHoldable
 
-            if(hit.collider.gameObject.GetComponent<BowlingBall>().canHarm)
+            if(hit.collider.gameObject.GetComponent<BowlingBall>() != null)
             {
-                distance = 0;
-                StartCoroutine(DestroyShelf());
+                if (hit.collider.gameObject.GetComponent<BowlingBall>().canHarm)
+                {
+                    distance = 0;
+                    StartCoroutine(DestroyShelf());
+                }
             }
         }
         else

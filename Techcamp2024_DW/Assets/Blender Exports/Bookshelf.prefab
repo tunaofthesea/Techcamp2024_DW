@@ -282,7 +282,6 @@ GameObject:
   - component: {fileID: 2680542137102887849}
   - component: {fileID: 526801193179647179}
   - component: {fileID: 3156524466122551587}
-  - component: {fileID: 3205350918375243256}
   - component: {fileID: 2955107476018531626}
   m_Layer: 3
   m_Name: Bookshelf Break 1st.002
@@ -373,27 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f30c1487c1a074c9c98090ac0c954f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &3205350918375243256
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357413990420797311}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6832191, y: 1.4983498, z: 0.44000003}
-  m_Center: {x: 0.033609584, y: -0.12568265, z: -2.4692e-41}
 --- !u!54 &2955107476018531626
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -831,7 +809,6 @@ GameObject:
   - component: {fileID: 5011414879048229232}
   - component: {fileID: 3923117228193018380}
   - component: {fileID: 5274614063991710391}
-  - component: {fileID: 8415554492043364702}
   - component: {fileID: 6148522794391648994}
   m_Layer: 3
   m_Name: Bookshelf Break 1st.003
@@ -922,27 +899,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f30c1487c1a074c9c98090ac0c954f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &8415554492043364702
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2796654830513086104}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.68321913, y: 1.0400046, z: 0.44000003}
-  m_Center: {x: -0.03360957, y: -0.35485524, z: 2.4692e-41}
 --- !u!54 &6148522794391648994
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1117,7 +1073,6 @@ GameObject:
   - component: {fileID: 4357033886455236282}
   - component: {fileID: 5971032002962181398}
   - component: {fileID: 4520469629413735072}
-  - component: {fileID: 8416884149085006191}
   - component: {fileID: 8890993863493038431}
   m_Layer: 3
   m_Name: Bookshelf Break 1st.001
@@ -1209,27 +1164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f30c1487c1a074c9c98090ac0c954f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &8416884149085006191
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3620532869805327404}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6832191, y: 1.2575432, z: 0.44000003}
-  m_Center: {x: 0.033609584, y: 0.596029, z: -2.4692e-41}
 --- !u!54 &8890993863493038431
 Rigidbody:
   m_ObjectHideFlags: 0

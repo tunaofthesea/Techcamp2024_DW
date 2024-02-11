@@ -19,7 +19,7 @@ public class CallBreakFromFloor : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<Break>() != null) 
         {
-            Debug.Log(collision.relativeVelocity.magnitude);
+            //Debug.Log(collision.relativeVelocity.magnitude);
             if (collision.relativeVelocity.magnitude > 2.4f)
             {
                 collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;

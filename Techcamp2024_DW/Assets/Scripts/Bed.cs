@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bed : InteractionObject
 {
+    public bool moveOnX;
     private ToggleMoveAndClampTarget objectMover;
 
     private float heightStart;
@@ -24,6 +25,7 @@ public class Bed : InteractionObject
     public override void OnClick()
     {
         base.OnClick();
+        objectMover.moveOnX = moveOnX;
         objectMover.objectToMove = transform.parent.gameObject;
         objectMover.SetInitialPosition();
         modulus++;
