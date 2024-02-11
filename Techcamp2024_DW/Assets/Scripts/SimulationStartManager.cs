@@ -5,6 +5,7 @@ using UnityEngine;
 public class SimulationStartManager : MonoBehaviour
 {
     public List<CheckJoints> ObjectsWithJoints;
+    public List<Rigidbody> gravityBodies;
     public GameObject CurrentEarthQuakeFloor;
     public static SimulationStartManager instance;
 
@@ -29,6 +30,11 @@ public class SimulationStartManager : MonoBehaviour
             {
                 ObjectsWithJoints[i].transform.parent.SetParent(CurrentEarthQuakeFloor.transform);  // When room changes, change the floor as well
             }
+        }
+
+        for (int i = 0; i < gravityBodies.Count; i++)
+        {
+            gravityBodies[i].useGravity = true;
         }
     }
 }
