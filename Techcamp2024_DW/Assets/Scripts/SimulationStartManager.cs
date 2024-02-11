@@ -9,6 +9,8 @@ public class SimulationStartManager : MonoBehaviour
     public GameObject CurrentEarthQuakeFloor;
     public static SimulationStartManager instance;
 
+    public List<Rigidbody> objectsToDisable;
+
     private void Awake()
     {
         instance = this;
@@ -38,6 +40,11 @@ public class SimulationStartManager : MonoBehaviour
         for (int i = 0; i < gravityBodies.Count; i++)
         {
             gravityBodies[i].useGravity = true;
+        }
+
+        for (int i = 0; i < objectsToDisable.Count; i++)
+        {
+            objectsToDisable[i].gameObject.SetActive(false);
         }
     }
 }

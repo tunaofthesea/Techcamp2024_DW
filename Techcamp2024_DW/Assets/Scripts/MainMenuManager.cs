@@ -29,6 +29,13 @@ public class MainMenuManager : MonoBehaviour
 
     public void ExitGame()
     {
+        StartCoroutine(FadeOut());
+    }
+
+    IEnumerator FadeOut()
+    {
+        BackgroundManager.instance.BlackIn();
+        yield return new WaitForSeconds(2f);
         Application.Quit();
     }
 }
