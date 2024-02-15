@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
 
     public AudioManager audioManager;
 
+    public Animator anim;
+
     GameObject floor;
 
     void Start()
@@ -41,6 +43,7 @@ public class UIManager : MonoBehaviour
                 timeractive = false;
                 countdown = 0f;
                 timer.text = "00:00";
+                anim.SetBool("IsOpen", false);
 
                 floor = (GameObject)roomScroll.Room.GetValue(roomScroll.roomIndex);
                 floor.gameObject.GetComponentInChildren<EarthquakeSimulatorManager>().enabled = true;
